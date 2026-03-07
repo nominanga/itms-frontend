@@ -1,24 +1,26 @@
-import { useState } from 'react'
-import axios from "axios";
+import {useState} from 'react'
+import {useTranslation} from "react-i18next";
+import i18next from 'i18next'
+
+const languages: string[] = ["en", "ru"]
 
 function App() {
-  const [value, setValue] = useState('{}')
+  const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0)
 
-  async function testAPIRequest() {
-    const instance = axios.create({
-      baseURL: "/api",
-      timeout: 5000
+  const { t } = useTranslation()
+
+  function handleLanguageChange() {
+    const newLanguageIndex = (currentLanguageIndex + 1) % languages.length
+    setCurrentLanguageIndex(newLanguageIndex)
+    i18next.changeLanguage(languages[newLanguageIndex]).then(() => {
+      window.document.getElementsByTagName("html")[0].lang = i18next.language
     })
-
-    const response = await instance.get("/user/token/")
-
-    setValue(JSON.stringify(response.data))
   }
 
   return (
     <>
-      <p>{value}</p>
-      <button onClick={testAPIRequest}>Press to update the request from the server</button>
+      <p>{t("greeting")}</p>
+      <button onClick={handleLanguageChange}>{t("button_text")}</button>
     </>
   )
 }
