@@ -1,0 +1,1 @@
+export {default as logo} from "./itms_login_logo.png"

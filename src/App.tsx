@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={"/"} element={<LoginPage/>}/>
-        <Route path={"/app"} element={
+        <Route path={"/login"} element={<LoginPage/>}/>
+        <Route index element={
           <AuthRedirect>
             <AppPage/>
           </AuthRedirect>

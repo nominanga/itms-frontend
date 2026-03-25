@@ -1,3 +1,8 @@
 {
-
+  "login_page": {
+    "login": "Логин",
+    "password": "Пароль",
+    "remember_me": "Запомнить на этом устройстве",
+    "login_button": "Войти"
+  }
 }

@@ -1,11 +1,11 @@
-import useAuthStore from "../store/authStore.ts";
 import {useNavigate} from "react-router-dom";
+import {accountKey} from "../types/constants.ts";
 
 const AuthRedirect = ({children}: React.PropsWithChildren) => {
-    const token = useAuthStore(state => state.authToken)
+
     const navigate = useNavigate()
 
-    if (!token) navigate("/")
+    if (!localStorage.getItem(accountKey)) navigate("/login")
 
     return children
 }
