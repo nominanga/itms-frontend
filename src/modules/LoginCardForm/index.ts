@@ -1,1 +1,1 @@
-export {LoginCardForm} from "./components/LoginCardForm/LoginCardForm.tsx"
+export {default as LoginCardForm} from "./components/LoginCardForm/LoginCardForm.tsx"
