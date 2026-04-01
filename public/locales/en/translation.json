@@ -3,6 +3,11 @@
       "login": "Login",
       "password": "Password",
       "remember_me": "Remember on this device",
-      "login_button": "Sign in"
+      "login_button": "Sign in",
+      "login_required": "Login is required",
+      "password_required": "Password is required"
+  },
+  "toaster_messages": {
+    "login_error": "Couldn't authenticate, check your credentials"
   }
 }

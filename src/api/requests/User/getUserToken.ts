@@ -1,14 +1,12 @@
-import baseAPI from "../../../api/baseAPI.ts";
+import baseAPI from "../../baseAPI.ts";
 import type {ApiResponse} from "../../../types/apiTypes.ts";
-
-
 
 export async function getUserToken(
     login: string,
     password: string,
     s?: boolean,
-    auctionId?: number,
-    psguID?: number
+    auctionId?: string | null,
+    psguID?: string | null
 ) {
     return await baseAPI.get<ApiResponse<string>>(`/User/Token/${encodeURIComponent(login)}`, {
         params: {

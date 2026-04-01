@@ -1,11 +1,12 @@
 import i18next from 'i18next'
 import "./LanguageSwitcher.css"
+import {languageKey} from "../../types/constants.ts";
 
 const LanguageSwitcher = () => {
 
     function changeLanguageTo(languageCode: string) {
         i18next.changeLanguage(languageCode)
-        localStorage.setItem("language", languageCode)
+        localStorage.setItem(languageKey, languageCode)
     }
 
     return (
