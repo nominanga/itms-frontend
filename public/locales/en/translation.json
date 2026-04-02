@@ -8,6 +8,7 @@
       "password_required": "Password is required"
   },
   "toaster_messages": {
-    "login_error": "Couldn't authenticate, check your credentials"
+    "login_error": "Couldn't authenticate, check your credentials",
+    "successful_auth": "Welcome! You were authenticated successfully"
   }
 }

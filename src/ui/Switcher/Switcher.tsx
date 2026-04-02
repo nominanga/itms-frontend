@@ -7,8 +7,8 @@ interface SwitcherProps {
 
 const Switcher: FC<SwitcherProps> = ({checked, setChecked}) => {
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setChecked(!e.target.checked)
+    function handleChange() {
+        setChecked(!checked)
     }
 
     return <div>

@@ -5,7 +5,7 @@ export function setAccountInfo(
     login: string,
     hash: string,
     hash2: string,
-    auctionId: string,
+    auctionId: string | null,
     projectSupplierGuid: string | null,
 ) {
     const acct: StoredAccountInfo = {
@@ -18,6 +18,14 @@ export function setAccountInfo(
     localStorage.setItem(accountKey, JSON.stringify(acct));
 }
 
-export function getAccountInfo(): StoredAccountInfo {
-    return JSON.parse(localStorage.getItem(accountKey) ?? "")
+export function getAccountInfo(): StoredAccountInfo | null {
+    try{
+        return JSON.parse(localStorage.getItem(accountKey) ?? "")
+    } catch {
+        return null
+    }
+}
+
+export function removeAccountInfo(): void {
+    localStorage.removeItem(accountKey);
 }

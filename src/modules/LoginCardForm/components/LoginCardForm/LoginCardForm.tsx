@@ -4,15 +4,12 @@ import LanguageSwitcher from "../../../../components/LanguageSwitcher/LanguageSw
 import Switcher from "../../../../ui/Switcher/Switcher.tsx";
 import {logo} from "../../../../assets";
 import {useForm} from "react-hook-form"
-import {getUserToken} from "../../../../api/requests/User/getUserToken.ts";
-import {useCallback, useState} from "react";
+import {loginUser} from "../../../../api/requests/User/loginUser.ts";
+import {useCallback, useEffect, useId, useState} from "react";
 import {toast} from "sonner";
 import {useTokenStore} from "../../../../store/TokenStore.ts";
-import {jwtDispatcher} from "../../../../utils/jwtDispatcher.ts";
-import {setAccountInfo} from "../../../../utils/storageAccountInfo.ts";
-import {useNavigate} from "react-router-dom";
 import {useSearchParamsStore} from "../../../../store/SearchParamsStore.ts";
-import baseAPI from "../../../../api/baseAPI.ts";
+import {useRedirect} from "../../../../hooks/useRedirect.ts";
 
 interface LoginFormInputs{
     login: string
@@ -22,44 +19,37 @@ interface LoginFormInputs{
 const LoginCardForm = () => {
     const {register, formState: {errors}, handleSubmit} = useForm<LoginFormInputs>();
     const updateTokenPayload = useTokenStore((state) => state.updateTokenPayload)
-    const searchParams = useSearchParamsStore((state) => state.params)
+    const savedSearchParams = useSearchParamsStore((state) => state.params)
 
-    const navigate = useNavigate()
+    const formId = useId()
+
+    const redirect = useRedirect()
 
     const [rememberMe, setRememberMe] = useState(false)
 
     const { t } = useTranslation()
 
     const submitLogin = useCallback(async (inputs: LoginFormInputs) => {
-        const response = await getUserToken(inputs.login, inputs.password)
-        const rawJwt = response.data.Data
-        if (!rawJwt) {
-            toast.error(t("toaster_messages.login_error"))
-            return
-        }
-        let tokenPayload
-        try {
-            tokenPayload = jwtDispatcher(rawJwt)
-        } catch {
-            toast.error(t("toaster_messages.login_error"))
-            return
-        }
-        updateTokenPayload(tokenPayload)
-        if (rememberMe) setAccountInfo(
+        const tokenPayload = await loginUser(
             inputs.login,
-            tokenPayload.hash,
-            tokenPayload.hash2,
-            String(tokenPayload.auctionID),
-            null
+            inputs.password,
+            false, null,
+            null,
+            rememberMe
         )
-        baseAPI.defaults.headers.common.Authorization = rawJwt;
+        if (tokenPayload === null) return toast.error(t("toaster_messages.login_error"))
+        updateTokenPayload(tokenPayload)
+        toast.success(t("toaster_messages.successful_auth"))
+        redirect(savedSearchParams)
 
-        navigate("/")
+    }, [redirect, rememberMe, t, updateTokenPayload, savedSearchParams])
 
-    }, [navigate, rememberMe, t, updateTokenPayload])
+    useEffect(() => {
+        console.log(savedSearchParams.NR)
+    }, [savedSearchParams.NR])
 
     return <div>
-        <form onSubmit={handleSubmit(submitLogin)}>
+        <form id={formId} onSubmit={handleSubmit(submitLogin)}>
             <img src={logo} alt={"logo"}/>
             <AuthInput
                 inputName={t("login_page.login")}
@@ -74,14 +64,16 @@ const LoginCardForm = () => {
             />
             {errors.password && <div>{t("login_page.password_required")}</div> }
             <LanguageSwitcher />
-            <p>{t("login_page.remember_me")}</p>
-            {!!(searchParams.NR) &&
-                <Switcher
-                    checked={rememberMe}
-                    setChecked={setRememberMe}
-                />
+            {!!(savedSearchParams.NR) ||
+                <>
+                    <p>{t("login_page.remember_me")}</p>
+                    <Switcher
+                        checked={rememberMe}
+                        setChecked={setRememberMe}
+                    />
+                </>
             }
-            <button type={"submit"}>{t("login_page.login_button")}</button>
+            <button type={"submit"} form={formId}>{t("login_page.login_button")}</button>
         </form>
     </div>
 }

@@ -6,5 +6,9 @@
     "login_button": "Войти",
     "login_required": "Требуется логин",
     "password_required": "Требуется пароль"
+  },
+  "toaster_messages": {
+    "login_error": "Couldn't authenticate, check your credentials",
+    "successful_auth": "Welcome! You were authenticated successfully"
   }
 }
