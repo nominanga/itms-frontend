@@ -5,11 +5,11 @@ import Switcher from "../../../../ui/Switcher/Switcher.tsx";
 import {logo} from "../../../../assets";
 import {useForm} from "react-hook-form"
 import {loginUser} from "../../../../api/requests/User/loginUser.ts";
-import {useCallback, useEffect, useId, useState} from "react";
+import {useCallback, useId, useState} from "react";
 import {toast} from "sonner";
 import {useTokenStore} from "../../../../store/TokenStore.ts";
-import {useSearchParamsStore} from "../../../../store/SearchParamsStore.ts";
 import {useRedirect} from "../../../../hooks/useRedirect.ts";
+import {useSearchParams} from "react-router-dom";
 
 interface LoginFormInputs{
     login: string
@@ -19,7 +19,7 @@ interface LoginFormInputs{
 const LoginCardForm = () => {
     const {register, formState: {errors}, handleSubmit} = useForm<LoginFormInputs>();
     const updateTokenPayload = useTokenStore((state) => state.updateTokenPayload)
-    const savedSearchParams = useSearchParamsStore((state) => state.params)
+    const [queryParams] = useSearchParams();
 
     const formId = useId()
 
@@ -40,13 +40,9 @@ const LoginCardForm = () => {
         if (tokenPayload === null) return toast.error(t("toaster_messages.login_error"))
         updateTokenPayload(tokenPayload)
         toast.success(t("toaster_messages.successful_auth"))
-        redirect(savedSearchParams)
+        redirect()
 
-    }, [redirect, rememberMe, t, updateTokenPayload, savedSearchParams])
-
-    useEffect(() => {
-        console.log(savedSearchParams.NR)
-    }, [savedSearchParams.NR])
+    }, [redirect, rememberMe, t, updateTokenPayload])
 
     return <div>
         <form id={formId} onSubmit={handleSubmit(submitLogin)}>
@@ -64,7 +60,7 @@ const LoginCardForm = () => {
             />
             {errors.password && <div>{t("login_page.password_required")}</div> }
             <LanguageSwitcher />
-            {!!(savedSearchParams.NR) ||
+            {queryParams.get("NR") === "1" ||
                 <>
                     <p>{t("login_page.remember_me")}</p>
                     <Switcher

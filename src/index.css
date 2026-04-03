@@ -1,4 +1,13 @@
-html, body, div, span, applet, object, iframe,
+:root {
+  --primary-color: #303F9F;
+  --secondary-color: #EDEDED;
+  --background: #F4F5F9;
+  --borders: #BDBDBD;
+  --no-focus: #D9D9D9;
+  font:
+}
+
+body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,

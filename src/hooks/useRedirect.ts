@@ -1,4 +1,4 @@
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import type {ItmsSearchParams} from "../types/ItmsSearchParams.ts";
 
 const paramToPage: Partial<Record<keyof ItmsSearchParams, string>> = {
@@ -10,10 +10,11 @@ const paramToPage: Partial<Record<keyof ItmsSearchParams, string>> = {
 
 export const useRedirect = () => {
     const navigate = useNavigate();
-    return function(savedSearchParams: ItmsSearchParams) {
+    const [searchParams] = useSearchParams()
+    return function() {
 
         for (const key of Object.keys(paramToPage) as (keyof typeof paramToPage)[]) {
-            if (savedSearchParams[key] !== null) {
+            if (searchParams.get(key)) {
                 return navigate(paramToPage[key]!)
             }
         }

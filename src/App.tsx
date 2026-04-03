@@ -11,7 +11,7 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <>
-        <Toaster/>
+        <Toaster richColors={true}/>
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
                 <Routes>
