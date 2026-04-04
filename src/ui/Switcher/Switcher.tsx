@@ -1,4 +1,5 @@
 import type {FC} from "react";
+import "./Switcher.css"
 
 interface SwitcherProps {
     checked: boolean
@@ -11,9 +12,10 @@ const Switcher: FC<SwitcherProps> = ({checked, setChecked}) => {
         setChecked(!checked)
     }
 
-    return <div>
+    return <label className="switch">
         <input  type={"checkbox"} onChange={handleChange} checked={checked}/>
-    </div>
+        <span className="slider round"></span>
+    </label>
 }
 
 export default Switcher

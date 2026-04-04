@@ -10,6 +10,8 @@ import {toast} from "sonner";
 import {useTokenStore} from "../../../../store/TokenStore.ts";
 import {useRedirect} from "../../../../hooks/useRedirect.ts";
 import {useSearchParams} from "react-router-dom";
+import "./LoginCardForm.css"
+import LoginSpinner from "../../ui/LoginSpinner/LoginSpinner.tsx";
 
 interface LoginFormInputs{
     login: string
@@ -26,10 +28,12 @@ const LoginCardForm = () => {
     const redirect = useRedirect()
 
     const [rememberMe, setRememberMe] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const { t } = useTranslation()
 
     const submitLogin = useCallback(async (inputs: LoginFormInputs) => {
+        setLoading(true)
         const tokenPayload = await loginUser(
             inputs.login,
             inputs.password,
@@ -37,39 +41,50 @@ const LoginCardForm = () => {
             null,
             rememberMe
         )
-        if (tokenPayload === null) return toast.error(t("toaster_messages.login_error"))
+        if (tokenPayload === null) {
+            setLoading(false)
+            return toast.error(t("toaster_messages.login_error"))
+        }
         updateTokenPayload(tokenPayload)
         toast.success(t("toaster_messages.successful_auth"))
+        setLoading(false)
         redirect()
-
     }, [redirect, rememberMe, t, updateTokenPayload])
 
-    return <div>
-        <form id={formId} onSubmit={handleSubmit(submitLogin)}>
-            <img src={logo} alt={"logo"}/>
-            <AuthInput
-                inputName={t("login_page.login")}
-                type={"text"}
-                {...register("login", {required: true})}
-            />
-            {errors.login && <div>{t("login_page.login_required")}</div> }
-            <AuthInput
-                inputName={t("login_page.password")}
-                type={"password"}
-                {...register("password", {required: true})}
-            />
-            {errors.password && <div>{t("login_page.password_required")}</div> }
-            <LanguageSwitcher />
-            {queryParams.get("NR") === "1" ||
-                <>
-                    <p>{t("login_page.remember_me")}</p>
-                    <Switcher
-                        checked={rememberMe}
-                        setChecked={setRememberMe}
-                    />
-                </>
-            }
-            <button type={"submit"} form={formId}>{t("login_page.login_button")}</button>
+    return <div className="login-card">
+        <form id={formId} className="login-form" onSubmit={handleSubmit(submitLogin)}>
+            <div className="login-form-top">
+                <img src={logo} alt={"logo"} className={"itms-logo"}/>
+                <AuthInput
+                    inputName={t("login_page.login")}
+                    type={"text"}
+                    errorText={t("login_page.login_required")}
+                    isError={errors.login}
+                    {...register("login", {required: true})}
+                />
+                <AuthInput
+                    inputName={t("login_page.password")}
+                    type={"password"}
+                    isError={errors.password}
+                    errorText={t("login_page.password_required")}
+                    {...register("password", {required: true})}
+                />
+            </div>
+            <div className="login-form-bottom">
+                <LanguageSwitcher />
+                {queryParams.get("NR") === "1" ||
+                    <div className="remember-me-field">
+                        <p>{t("login_page.remember_me")}</p>
+                        <Switcher
+                            checked={rememberMe}
+                            setChecked={setRememberMe}
+                        />
+                    </div>
+                }
+                <button type={"submit"} form={formId} className="login-button" disabled={loading}>
+                    {!loading ? t("login_page.login_button") : <LoginSpinner/>}
+                </button>
+            </div>
         </form>
     </div>
 }

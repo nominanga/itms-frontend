@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import "./LanguageSwitcher.css"
+import {russianFlag, englishFlag} from "../../assets"
 
 const LanguageSwitcher = () => {
 
@@ -8,9 +9,13 @@ const LanguageSwitcher = () => {
     }
 
     return (
-        <div>
-            <button type={"button"} onClick={() => changeLanguageTo("ru")}>russian</button>
-            <button type={"button"} onClick={() => changeLanguageTo("en")}>english</button>
+        <div className="language-switcher-container">
+            <button type={"button"} onClick={() => changeLanguageTo("ru")}>
+                <img src={russianFlag} alt="russian" />
+            </button>
+            <button type={"button"} onClick={() => changeLanguageTo("en")}>
+                <img src={englishFlag} alt="english"/>
+            </button>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Toaster} from "sonner";
 import RouterPage from "./pages/RouterPage/RouterPage.tsx";
 import AuthRedirect from "./pages/AuthRedirect/AuthRedirect.tsx";
+import "./App.css"
 
 const queryClient = new QueryClient()
 

@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
   --primary-color: #303F9F;
+  --primary-color-hover: #283593;
+  --primary-color-active: #1A237E;
   --secondary-color: #EDEDED;
-  --background: #F4F5F9;
-  --borders: #BDBDBD;
+  --background: #f4f5f9;
+  --border-color: #BDBDBD;
   --no-focus: #D9D9D9;
-  font:
+  --error: #E57373;
+  font-family: 'Roboto', sans-serif;
 }
 
-body, div, span, applet, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
@@ -23,11 +28,10 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
+  font-size: 100%;
   vertical-align: baseline;
 }
-
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -44,7 +48,6 @@ blockquote, q {
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: '';
   content: none;
 }
 table {

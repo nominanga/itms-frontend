@@ -1,0 +1,64 @@
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-wrapper {
+    width: 100%;
+    height: 45px;
+    position: relative;
+    border-bottom: 2px solid var(--border-color);
+}
+
+
+.input-wrapper input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.input-wrapper label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--border-color);
+    font-weight: bold;
+    transition: 0.2s ease;
+    pointer-events: none;
+}
+
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+    top: 0;
+    transform: translateY(-100%) translateX(-10px);
+    color: var(--primary-color);
+}
+
+.input-wrapper:has(input:not(:placeholder-shown)),
+.input-wrapper:focus-within
+{
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.input-wrapper.error  {
+    border-color: var(--error);
+}
+
+.input-wrapper.error label.auth-input-label {
+    color: var(--error);
+}
+
+
+.error-message {
+    color: var(--error);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
