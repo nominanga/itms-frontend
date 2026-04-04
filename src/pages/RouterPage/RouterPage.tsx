@@ -20,7 +20,7 @@ const RouterPage = () => {
 
     const handleAuth = useCallback(async () => {
         if (savedTokenPayload !== null) {
-            return
+            return redirect()
         }
         const acct = getAccountInfo()
         if (acct === null) {
