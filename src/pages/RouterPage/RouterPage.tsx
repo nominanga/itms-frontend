@@ -6,8 +6,7 @@ import {toast} from "sonner";
 import {useTranslation} from "react-i18next";
 import {useRedirect} from "../../hooks/useRedirect.ts";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.ts";
-
-
+import CenteredSpinner from "../../ui/CenteredSpinner/CenteredSpinner.tsx";
 
 const RouterPage = () => {
     const updateTokenPayload = useTokenStore((state) => state.updateTokenPayload);
@@ -50,7 +49,7 @@ const RouterPage = () => {
     }, [])
 
     return <>
-        <div>loading</div>
+        <CenteredSpinner/>
     </>
 }
 

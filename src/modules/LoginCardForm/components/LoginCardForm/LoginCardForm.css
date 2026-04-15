@@ -71,6 +71,10 @@
     background: var(--primary-color-active);
 }
 
+.login-button:disabled {
+    cursor: auto;
+}
+
 .remember-me-field {
     display: flex;
     gap: 5px;

@@ -1,10 +1,12 @@
+import {removeAccountInfo} from "../../utils/storageAccountInfo.ts";
+
 const AppPage = () => {
 
 
 
     return (
         <>
-            <button>text</button>
+            <button onClick={() => removeAccountInfo()}>logout</button>
         </>
     )
 }
