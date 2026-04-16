@@ -1,4 +1,4 @@
-import {accountKey} from "../types/constants.ts";
+import {accountKey} from "../types/constants/localStorageConstants.ts";
 import type {StoredAccountInfo} from "../types/StoredAccountInfo.ts";
 
 export function setAccountInfo(

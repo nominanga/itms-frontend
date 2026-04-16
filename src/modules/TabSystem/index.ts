@@ -1,0 +1,1 @@
+export {default as TabSystem} from "./components/TabSystem/TabSystem.tsx"

@@ -5,9 +5,11 @@ const useNavigateWithQuery = () => {
     const location = useLocation();
 
     return (to: string, options: NavigateOptions = {}) => {
-        const query = location.search;
-        const separator = to.includes('?') ? '&' : '?';
-        navigate(`${to}${query ? separator + query.slice(1) : ''}`, options);
+        const [path, passedSearch] = to.split("?");
+        const merged = passedSearch !== undefined
+            ? `?${passedSearch}&${location.search.slice(1)}`
+            : location.search;
+        navigate(`${path}${merged}`, options);
     };
 };
 

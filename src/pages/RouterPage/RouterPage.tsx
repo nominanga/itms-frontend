@@ -4,7 +4,6 @@ import {useTokenStore} from "../../store/TokenStore.ts";
 import {getAccountInfo, removeAccountInfo} from "../../utils/storageAccountInfo.ts";
 import {toast} from "sonner";
 import {useTranslation} from "react-i18next";
-import {useRedirect} from "../../hooks/useRedirect.ts";
 import useNavigateWithQuery from "../../hooks/useNavigateWithQuery.ts";
 import CenteredSpinner from "../../ui/CenteredSpinner/CenteredSpinner.tsx";
 
@@ -13,13 +12,12 @@ const RouterPage = () => {
     const savedTokenPayload = useTokenStore((state) => state.tokenPayload);
 
     const navigateWithQuery = useNavigateWithQuery();
-    const redirect = useRedirect();
 
     const { t } = useTranslation();
 
     const handleAuth = useCallback(async () => {
         if (savedTokenPayload !== null) {
-            return redirect()
+            return navigateWithQuery("/app")
         }
         const acct = getAccountInfo()
         if (acct === null) {
@@ -41,8 +39,8 @@ const RouterPage = () => {
 
         updateTokenPayload(tokenPayload)
         toast.success(t("toaster_messages.successful_auth"))
-        redirect()
-    }, [updateTokenPayload, navigateWithQuery, savedTokenPayload, redirect, t])
+        navigateWithQuery("/app")
+    }, [updateTokenPayload, navigateWithQuery, savedTokenPayload, t])
 
     useEffect(() => {
         handleAuth()

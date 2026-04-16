@@ -8,10 +8,10 @@ import {loginUser} from "../../../../api/requests/User/loginUser.ts";
 import {useCallback, useId, useState} from "react";
 import {toast} from "sonner";
 import {useTokenStore} from "../../../../store/TokenStore.ts";
-import {useRedirect} from "../../../../hooks/useRedirect.ts";
 import {useSearchParams} from "react-router-dom";
 import "./LoginCardForm.css"
 import LoginSpinner from "../../ui/LoginSpinner/LoginSpinner.tsx";
+import useNavigateWithQuery from "../../../../hooks/useNavigateWithQuery.ts";
 
 interface LoginFormInputs{
     login: string
@@ -25,7 +25,7 @@ const LoginCardForm = () => {
 
     const formId = useId()
 
-    const redirect = useRedirect()
+    const navigateWithQuery = useNavigateWithQuery();
 
     const [rememberMe, setRememberMe] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -48,8 +48,8 @@ const LoginCardForm = () => {
         updateTokenPayload(tokenPayload)
         toast.success(t("toaster_messages.successful_auth"))
         setLoading(false)
-        redirect()
-    }, [redirect, rememberMe, t, updateTokenPayload])
+        navigateWithQuery("/app")
+    }, [navigateWithQuery, rememberMe, t, updateTokenPayload])
 
     return <div className="login-card">
         <form id={formId} className="login-form" onSubmit={handleSubmit(submitLogin)}>
