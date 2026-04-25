@@ -1,7 +1,7 @@
 
 const HomePage = () => {
 
-    return <div>home</div>
+    return <div className={"page-template"}>home</div>
 }
 
 export default HomePage;

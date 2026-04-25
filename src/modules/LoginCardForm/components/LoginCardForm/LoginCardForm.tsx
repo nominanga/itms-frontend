@@ -54,7 +54,7 @@ const LoginCardForm = () => {
     return <div className="login-card">
         <form id={formId} className="login-form" onSubmit={handleSubmit(submitLogin)}>
             <div className="login-form-top">
-                <img src={logo} alt={"logo"} className={"itms-logo"}/>
+                <img src={logo} alt={"logo"} className={"itms-logo"} unselectable={"on"}/>
                 <AuthInput
                     inputName={t("login_page.login")}
                     type={"text"}

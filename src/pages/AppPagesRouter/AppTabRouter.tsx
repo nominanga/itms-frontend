@@ -1,15 +1,14 @@
 import type { FC } from "react";
-import {parseTab, type SingleViewProps, TAB_CONFIG} from "../../types/constants/TabConfig.ts";
+import {parseTabName, TAB_CONFIG} from "../../types/constants/TabConfig.ts";
 
 interface IAppTabRouter {
     tabName: keyof typeof TAB_CONFIG;
 }
 
 const AppTabRouter: FC<IAppTabRouter> = ({ tabName }) => {
-    const { baseName, subId } = parseTab(tabName);
-    const config = TAB_CONFIG[baseName];
+    const { baseName, subId } = parseTabName(tabName);
 
-    const TabPage = config.component as FC<SingleViewProps>;
+    const TabPage = TAB_CONFIG[baseName].component;
     return <TabPage entityId={subId!} />;
 };
 

@@ -8,7 +8,11 @@
     "password_required": "Требуется пароль"
   },
   "toaster_messages": {
-    "login_error": "Couldn't authenticate, check your credentials",
-    "successful_auth": "Welcome! You were authenticated successfully"
+    "login_error": "Не получилось аутенцифицировать, проверьте логин и пароль",
+    "successful_auth": "Добро пожаловать! Успешная аутентификация"
+  },
+  "tab_titles": {
+    "home": "Главная",
+    "project": "Проект"
   }
 }

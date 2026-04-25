@@ -54,3 +54,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.page-template {
+  height: 100dvh;
+  width: 100%;
+  background: white;
+  border: 2px solid var(--border-color);
+  box-sizing: border-box;
+}
