@@ -1,0 +1,14 @@
+.tiles {
+    margin-top: 10px;
+    display: flex;
+    gap: 16px;
+    flex-direction: row;
+}
+
+.tiles > * {
+    flex: 1;
+}
+
+.tile-group {
+    min-width: 0;
+}
