@@ -1,14 +1,12 @@
 import {TabSystem} from "../../modules/TabSystem";
 import {useTabStore} from "../../store/TabStore.ts";
-import {Activity, useEffect, useState} from "react";
+import {Activity, useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import AppTabRouter from "../AppPagesRouter/AppTabRouter.tsx";
 import {Header} from "../../modules/Header"
 
 const AppPage = () => {
     const {tabs, currentTab, openTab} = useTabStore(state => state)
-
-    const [projectId, setProjectId] = useState<number>(0)
 
     const [query, setQuery] = useSearchParams()
 
@@ -31,19 +29,11 @@ const AppPage = () => {
     return (<>
         <Header/>
         <TabSystem/>
-        <main>
-            {tabs.map(tab => (
-                <Activity key={tab} mode={currentTab === tab ? "visible" : "hidden"}>
-                    <AppTabRouter tabName={tab}/>
-                </Activity>
-            ))}
-            <button onClick={() => {
-                openTab(`project.${projectId}`)
-                setProjectId(prevState => prevState + 1)
-            }}>
-                open projects page with index {projectId}
-            </button>
-        </main>
+        {tabs.map(tab => (
+            <Activity key={tab} mode={currentTab === tab ? "visible" : "hidden"}>
+                <AppTabRouter tabName={tab}/>
+            </Activity>
+        ))}
     </>)
 }
 

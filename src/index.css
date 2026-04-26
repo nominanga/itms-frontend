@@ -4,7 +4,9 @@
   --primary-color: #303F9F;
   --primary-color-hover: #283593;
   --primary-color-active: #1A237E;
-  --secondary-color: #EDEDED;
+  --secondary-color: #E0E5FF;
+  --secondary-color-hover: #C7CFFA;
+  --secondary-color-active: #A8B4F5;
   --background: #f4f5f9;
   --border-color: #BDBDBD;
   --no-focus: #D9D9D9;
@@ -53,12 +55,4 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-
-.page-template {
-  height: 100dvh;
-  width: 100%;
-  background: white;
-  border: 2px solid var(--border-color);
-  box-sizing: border-box;
 }

@@ -1,0 +1,8 @@
+.home-page {
+    background: white;
+    border-top: 2px solid var(--border-color);
+    min-height: calc(100dvh - 112px);
+    box-sizing: border-box;
+    padding: 20px;
+}
+

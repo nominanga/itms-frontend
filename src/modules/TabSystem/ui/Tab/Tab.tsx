@@ -43,9 +43,8 @@ const Tab: FC<TabProps> =  ({tabTitle, select, close, isActive, icon}) => {
     >
         {!isTabSmall &&
             <>
-                <div className={"tab-icon"}>
-                    <IconComponent strokeWidth={2.2} size={20} color={"black"}/>
-                </div>
+                <IconComponent strokeWidth={2} size={20} viewBox={"0 0 22 22"} color={"black"} className={"tab-icon"}/>
+                <span className="tab-spacer" />
                 <div className={"tab-title"}>
                     <span>{tabTitle}</span>
                 </div>
@@ -56,9 +55,8 @@ const Tab: FC<TabProps> =  ({tabTitle, select, close, isActive, icon}) => {
         }
         {isTabSmall && !isActive &&
             <>
-                <div className={"tab-icon"}>
-                    <IconComponent strokeWidth={2.2} size={20} color={"black"}/>
-                </div>
+                <IconComponent strokeWidth={2} size={20} viewBox={"0 0 22 22"} color={"black"} className={"tab-icon"}/>
+                <span className="tab-spacer" />
                 <div className={"tab-title"}>
                     <span>{tabTitle}</span>
                 </div>

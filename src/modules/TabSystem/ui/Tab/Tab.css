@@ -3,7 +3,7 @@
     background-color: var(--no-focus);
     border: 2px solid var(--border-color);
     border-bottom: none;
-    width: 200px;
+    width: 250px;
     height: 40px;
     border-radius: 10px 10px 0 0;
     z-index: 0;
@@ -51,20 +51,25 @@
 }
 
 .tab-title > span {
-    padding-left: 5px;
     font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.tab-spacer {
+    flex-shrink: 1;
+    width: 8px;
     min-width: 0;
 }
 
 .tab-icon {
-    width: 20px;
-    height: 20px;
-    margin-top: 2px;
+    width: 24px;
+    height: 24px;
+    transform: scale(0.833);
+    transform-origin: center;
     flex-shrink: 0;
-    resize: none;
-    overflow: hidden;
 }
