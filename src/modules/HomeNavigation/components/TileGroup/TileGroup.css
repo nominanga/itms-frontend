@@ -12,3 +12,15 @@
 .tile-group {
     min-width: 0;
 }
+
+@media (max-width: 576px) {
+    .tiles {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 1024px) {
+    .tiles {
+        flex-direction: row;
+    }
+}

@@ -1,42 +1,45 @@
 import TileGroup from "../TileGroup/TileGroup.tsx";
 import NavigationTile from "../../ui/NavigationTile/NavigationTile.tsx";
-import { SquareChartGantt } from "lucide-react";
 import "./TileGrid.css";
+import {getTabIcon} from "../../../../types/constants/TabConfig.ts";
+import {useTranslation} from "react-i18next";
 
 const TileGrid = () => {
+
+    const { t } = useTranslation();
+
     return (
         <div className="tile-grid">
-            {/* Row 1: Resolutions (2 tiles) | Auctions (1 tile) | Preferred suppliers (1 tile) */}
-            <TileGroup title="Resolutions" style={{ gridColumn: "1" }}>
-                <NavigationTile tabName="project.1" icon={SquareChartGantt} />
-                <NavigationTile tabName="project.2" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.resolutions")} style={{ gridColumn: "1" }}>
+                <NavigationTile tabName="tactical_resolutions" icon={getTabIcon("tactical_resolutions")} />
+                <NavigationTile tabName="tender_resolutions" icon={getTabIcon("tender_resolutions")} />
             </TileGroup>
 
-            <TileGroup title="Auctions" style={{ gridColumn: "2" }}>
-                <NavigationTile tabName="project.3" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.auctions")} style={{ gridColumn: "2" }}>
+                <NavigationTile tabName="auctions" icon={getTabIcon("auctions")} />
             </TileGroup>
 
-            <TileGroup title="Preferred" style={{ gridColumn: "3" }}>
-                <NavigationTile tabName="project.4" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.mice")} style={{ gridColumn: "3" }}>
+                <NavigationTile tabName="mice_requests" icon={getTabIcon("mice_requests")} />
             </TileGroup>
 
-            <TileGroup title="Projects" style={{ gridColumn: "1 / 4" }}>
-                <NavigationTile tabName="project.5" icon={SquareChartGantt} />
-                <NavigationTile tabName="project.6" icon={SquareChartGantt} />
-                <NavigationTile tabName="project.7" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.projects")} style={{ gridColumn: "1 / 4" }}>
+                <NavigationTile tabName="projects_sourcing" icon={getTabIcon("projects_sourcing")} />
+                <NavigationTile tabName="projects_demand" icon={getTabIcon("projects_demand")} />
+                <NavigationTile tabName="my_projects" icon={getTabIcon("my_projects")} />
             </TileGroup>
 
-            <TileGroup title="Saving Declarations" style={{ gridColumn: "1" }}>
-                <NavigationTile tabName="project.8" icon={SquareChartGantt} />
-                <NavigationTile tabName="project.9" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.savings")} style={{ gridColumn: "1" }}>
+                <NavigationTile tabName="savings_direct" icon={getTabIcon("savings_direct")} />
+                <NavigationTile tabName="savings_indirect" icon={getTabIcon("savings_indirect")} />
             </TileGroup>
 
-            <TileGroup title="Mice Requests" style={{ gridColumn: "2" }}>
-                <NavigationTile tabName="project.10" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.suppliers")} style={{ gridColumn: "2" }}>
+                <NavigationTile tabName="preferred_suppliers" icon={getTabIcon("preferred_suppliers")} />
             </TileGroup>
 
-            <TileGroup title="Indices" style={{ gridColumn: "3" }}>
-                <NavigationTile tabName="project.11" icon={SquareChartGantt} />
+            <TileGroup title={t("home_group_titles.indices")} style={{ gridColumn: "3" }}>
+                <NavigationTile tabName="indices" icon={getTabIcon("indices")} />
             </TileGroup>
         </div>
     );

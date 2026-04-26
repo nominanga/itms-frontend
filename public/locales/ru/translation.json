@@ -13,6 +13,26 @@
   },
   "tab_titles": {
     "home": "Главная",
-    "project": "Проект"
+    "project": "Проект",
+    "tender_resolutions": "Тендерные решения",
+    "tactical_resolutions": "Тактические решения",
+    "auctions": "Аукционы",
+    "mice_requests": "MICE Запросы",
+    "projects_sourcing": "Проекты - Сорсинг",
+    "projects_demand": "Проекты - Запросы",
+    "my_projects": "Мои Проекты",
+    "savings_direct": "Декларации - Direct",
+    "savings_indirect": "Декларации - Indirect",
+    "preferred_suppliers": "Рекомендованные поставщики",
+    "indices": "Индексы"
+  },
+  "home_group_titles": {
+    "resolutions": "Решения",
+    "auctions": "Аукционы",
+    "mice": "MICE Запросы",
+    "projects": "Проекты",
+    "savings": "Сейвинг Декларации",
+    "suppliers": "Поставщики",
+    "indices": "Индексы"
   }
 }

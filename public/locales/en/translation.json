@@ -13,6 +13,26 @@
   },
   "tab_titles": {
     "home": "Home",
-    "project": "Project"
+    "project": "Project",
+    "tender_resolutions": "Tender Resolutions",
+    "tactical_resolutions": "Tactical Resolutions",
+    "auctions": "Auctions",
+    "mice_requests": "MICE Requests",
+    "projects_sourcing": "Projects - Sourcing",
+    "projects_demand": "Projects - Demand",
+    "my_projects": "My Projects",
+    "savings_direct": "Declarations - Direct",
+    "savings_indirect": "Declarations - Indirect",
+    "preferred_suppliers": "Preferred Suppliers",
+    "indices": "Indices"
+  },
+  "home_group_titles": {
+    "resolutions": "Resolutions",
+    "auctions": "Auctions",
+    "mice": "MICE Requests",
+    "projects": "Projects",
+    "savings": "Saving Declarations",
+    "suppliers": "Preferred Suppliers",
+    "indices": "Indices"
   }
 }
