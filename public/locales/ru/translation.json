@@ -26,6 +26,13 @@
     "preferred_suppliers": "Рекомендованные поставщики",
     "indices": "Индексы"
   },
+  "sidebar": {
+    "configuration": "Конфигурация",
+    "settings": "Настройки",
+    "notifications": "Уведомления",
+    "report_templates": "Шаблоны отчётов",
+    "users": "Пользователи"
+  },
   "home_group_titles": {
     "resolutions": "Решения",
     "auctions": "Аукционы",

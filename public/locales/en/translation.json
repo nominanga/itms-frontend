@@ -26,6 +26,13 @@
     "preferred_suppliers": "Preferred Suppliers",
     "indices": "Indices"
   },
+  "sidebar": {
+    "configuration": "Configuration",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "report_templates": "Report Templates",
+    "users": "Users"
+  },
   "home_group_titles": {
     "resolutions": "Resolutions",
     "auctions": "Auctions",

@@ -4,6 +4,7 @@ import {Activity, useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import AppTabRouter from "../AppPagesRouter/AppTabRouter.tsx";
 import {Header} from "../../modules/Header"
+import "./AppPage.css"
 
 const AppPage = () => {
     const {tabs, currentTab, openTab} = useTabStore(state => state)
@@ -28,12 +29,14 @@ const AppPage = () => {
 
     return (<>
         <Header/>
-        <TabSystem/>
-        {tabs.map(tab => (
-            <Activity key={tab} mode={currentTab === tab ? "visible" : "hidden"}>
-                <AppTabRouter tabName={tab}/>
-            </Activity>
-        ))}
+        <div className="app-content">
+            <TabSystem/>
+            {tabs.map(tab => (
+                <Activity key={tab} mode={currentTab === tab ? "visible" : "hidden"}>
+                    <AppTabRouter tabName={tab}/>
+                </Activity>
+            ))}
+        </div>
     </>)
 }
 

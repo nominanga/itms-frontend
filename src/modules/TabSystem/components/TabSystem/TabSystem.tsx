@@ -12,7 +12,7 @@ const TabSystem: FC = () => {
 
     const countMaxVisibleTabsAmount = () =>  {
         const oneTabSize = SmallTabSize + TabGapSize
-        return Math.floor((window.innerWidth - 4) / oneTabSize)
+        return Math.floor((window.innerWidth - 78 - 4) / oneTabSize)
     }
 
     const [maxVisibleTabsAmount, setMaxVisibleTabsAmount] = useState<number>(countMaxVisibleTabsAmount())

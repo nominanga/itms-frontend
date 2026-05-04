@@ -12,7 +12,7 @@ import {
     Gift,
     UserSearch,
     UserStar,
-    FileQuestionMark, MoveRight, Shuffle, Info, ThumbsUp,
+    ClipboardList, MoveRight, Shuffle, Info, ThumbsUp,
 
 } from 'lucide-react';
 
@@ -25,7 +25,7 @@ export const TAB_CONFIG: Record<string, {component: FC | FC<SingleViewProps>, ic
     "auctions": {component: HomePage, icon: Scale},
     "mice_requests": {component: HomePage, icon: Gift},
     "projects_sourcing": {component: HomePage, icon: UserSearch},
-    "projects_demand": {component: HomePage, icon: FileQuestionMark},
+    "projects_demand": {component: HomePage, icon: ClipboardList},
     "my_projects": {component: HomePage, icon: UserStar},
     "savings_direct": {component: HomePage, icon: MoveRight},
     "savings_indirect": {component: HomePage, icon: Shuffle},
