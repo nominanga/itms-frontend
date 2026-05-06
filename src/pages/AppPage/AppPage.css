@@ -1,5 +1,6 @@
 .app-content {
     padding-left: 78px;
+    padding-top: 70px;
 }
 
 @media (max-width: 576px) {

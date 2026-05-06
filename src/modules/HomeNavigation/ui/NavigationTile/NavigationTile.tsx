@@ -19,7 +19,7 @@ const NavigationTile: FC<NavigationTileProps> = ({tabName, icon}) => {
     const {t} = useTranslation()
 
     return <button onClick={() => openTab(tabName)} className={"navigation-tile"}>
-        <IconComponent size={60} className={"tile-icon"} color={"#303F9F"} strokeWidth={2}/>
+        <IconComponent size={80} className={"tile-icon"} color={"#303F9F"} strokeWidth={1.5}/>
         <h2 className={"tile-name"}>{getTranslatedTabName(tabName, t)}</h2>
     </button>
 }
