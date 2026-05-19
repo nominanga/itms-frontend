@@ -7,13 +7,20 @@ import {useTokenStore} from "../../../../store/TokenStore.ts";
 import {removeAccountInfo} from "../../../../utils/storageAccountInfo.ts";
 import baseAPI from "../../../../api/baseAPI.ts";
 import {useNavigate} from "react-router-dom";
+import {usePrivileges} from "../../../../hooks/usePrivileges.ts";
 import "./SidebarMenu.css";
 
-const NAV_ITEMS = Object.entries(TAB_CONFIG).filter(
-    ([key]) => !["project", "currencies", "keywords", "legal_notices", "mice_suppliers",
-        "new_demand_options", "project_complexities", "project_types", "taxonomy",
-        "settings", "notifications", "report_templates", "users", "inbox"].includes(key)
-);
+const EXCLUDED_FROM_NAV = ["project", "currencies", "keywords", "legal_notices", "mice_suppliers",
+    "new_demand_options", "project_complexities", "project_types", "taxonomy",
+    "settings", "notifications", "report_templates", "users", "inbox"];
+
+const ROLE_RESTRICTED: Record<string, "isProcurement" | "isFinance"> = {
+    tactical_resolutions: "isProcurement",
+    auctions: "isProcurement",
+    projects_sourcing: "isProcurement",
+    savings_direct: "isFinance",
+    savings_indirect: "isFinance",
+};
 
 const DICT_KEYS = ["currencies", "keywords", "legal_notices", "mice_suppliers",
     "new_demand_options", "project_complexities", "project_types", "taxonomy"];
@@ -27,6 +34,16 @@ const SidebarMenu = () => {
     const [configExpanded, setConfigExpanded] = useState(false);
     const openTab = useTabStore(s => s.openTab);
     const navigate = useNavigate();
+    const { isAdmin, isProcurement, isFinance, canSeeDicts } = usePrivileges();
+
+    const privileges = { isProcurement, isFinance };
+
+    const NAV_ITEMS = Object.entries(TAB_CONFIG).filter(([key]) => {
+        if (EXCLUDED_FROM_NAV.includes(key)) return false;
+        const restriction = ROLE_RESTRICTED[key];
+        if (restriction) return privileges[restriction];
+        return true;
+    });
 
     const handleItemClick = (key: string) => {
         openTab(key);
@@ -82,6 +99,7 @@ const SidebarMenu = () => {
                         </li>
                     ))}
 
+                    {canSeeDicts && (
                     <li>
                         <button
                             className={`sidebar-item sidebar-item--group ${dictExpanded ? "sidebar-item--group-open" : ""}`}
@@ -126,7 +144,9 @@ const SidebarMenu = () => {
                             })}
                         </ul>
                     </li>
+                    )}
 
+                    {isAdmin && (
                     <li>
                         <button
                             className={`sidebar-item sidebar-item--group ${configExpanded ? "sidebar-item--group-open" : ""}`}
@@ -171,6 +191,7 @@ const SidebarMenu = () => {
                             })}
                         </ul>
                     </li>
+                    )}
                 </ul>
 
                 <div className="sidebar-bottom">

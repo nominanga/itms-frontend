@@ -4,7 +4,7 @@ import "./TileGroup.css"
 
 interface TileGroupProps extends React.PropsWithChildren {
     title: string;
-    style?: React.CSSProperties;  // add this
+    style?: React.CSSProperties;
 }
 
 const TileGroup: FC<TileGroupProps> = (props) => {
